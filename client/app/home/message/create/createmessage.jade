@@ -1,0 +1,24 @@
+br
+.col-md-1
+.col-md-11
+  .panel.panel-default
+    .panel-body
+      .row
+        .col-md-12
+          h3(style="margin-bottom: 25px; text-align: left;") Create Message
+          hr
+          .container
+            .col-md-5
+              .form-area
+                form.form-horizontal(role="form")
+                  br(style="clear:both")
+                  .form-group
+                    label.col-sm-2(for="inputTo") To
+                    .col-sm-10
+                      select.form-control(id="inputTo", ng-model="recipients" multiple, ng-options="user.name for user in users track by user.id")
+                  .form-group
+                    label.col-sm-2(for="inputMessage") Message
+                    .col-sm-10
+                      input.form-control(id="inputMessage", placeholder="please enter message", type="text", ng-model='message')
+                  button.btn.btn-primary.pull-right(type="button", id="submit" name="submit" ng-click='createMessage()') Create Message
+.col-md-1

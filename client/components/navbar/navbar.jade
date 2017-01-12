@@ -1,0 +1,22 @@
+div.navbar.navbar-custom.navbar-static-top(ng-controller='NavbarCtrl')
+  div.container
+    div.navbar-header
+      a.navbar-brand(ui-sref='#', style="color: #FFFFFF") EZContact
+
+    ul.nav.navbar-nav
+      li(ng-show='isLoggedIn()', ui-sref-active='active')
+        a(ui-sref='home', style="color: #FFFFFF") Home
+
+      li(ng-show='isAdmin()', ui-sref-active='active')
+        a(ui-sref='admin', style="color: #FFFFFF") Admin
+
+    ul.nav.navbar-nav.navbar-right
+      li(ng-hide='isLoggedIn()', ui-sref-active='active', style='padding: 10px')
+        button.btn.btn-google(ng-class='classes'
+          ng-click='loginOauth("google")') Sign In With Google+
+
+      li(ng-show='isLoggedIn()')
+        p.navbar-text Hello {{ getCurrentUser().name }}
+
+      li(ng-show='isLoggedIn()')
+        a(ui-sref='logout', style="color: #FFFFFF") Logout

@@ -1,0 +1,64 @@
+br
+.col-md-1
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      .row
+        .panel.panel-default.inbox(id="inboxPanel")
+          .table-responsive.message-scroll(ng-show="!isMessageSelected()")
+            table.table.table-striped.table-hover
+              thead.hidden-xs
+                tr
+                  td
+                    .panel-heading
+                      h3.panel-title Inbox
+              tbody
+                tr(ng-repeat="user in recipients", ng-click="readMessage($index)")
+                  td.col-xs-3.col-md-2
+                    img.img-circle.img-responsive(src="{{user.postid.imageurl}}", alt="")
+                  td.col-xs-9.col-md-10
+                    .comment-text {{user.postid.content}}
+          div(ng-show="isMessageSelected()")
+            .row
+              .col-md-12
+                .table-responsive
+                  table.table.table-striped.table-hover
+                    tbody
+                      tr
+                        td.col-md-2
+                          img.img-circle.img-responsive(src="{{selected.postid.imageurl}}")
+                        td.col-md-8
+                          .comment-text {{selected.postid.content}}
+                        td.col-md-2
+                          button.btn.btn-primary(type="button", ng-show="!liked(selected.postid)", ng-click="like(selected.postid)") Like
+                          button.btn.btn-primary(type="button", ng-show="liked(selected.postid)", ng-click="unlike(selected.postid)") Un Like
+                      tr
+                        td.col-md-2
+                          h4 Comments
+                        td.col-md-8
+                          button.btn.btn-primary(type="button", ng-click="closeMessage()") Back To Inbox
+                        td.col-md-2
+            .row
+              .col-md-12
+                .table-responsive.message-scroll
+                  table.table.table-striped.table-hover
+                    tbody.message-scroll
+                      tr(ng-repeat="comment in comments")
+                        td.col-md-2
+                          img.img-circle.img-responsive(src="{{comment.imageurl}}", alt="")
+                        td.col-md-8
+                          .comment-text {{comment.content}}
+                        td.col-md-2
+                          button.btn.btn-primary(type="button", ng-show="!liked(comment)", ng-click="like(comment)") Like
+                          button.btn.btn-primary(type="button", ng-show="liked(comment)", ng-click="unlike(comment)") Un Like
+            .row
+              .col-md-7
+                .form-area
+                  form.form-horizontal(role="form")
+                    .form-group
+                      .col-sm-1
+                      .col-sm-9
+                        input.form-control(placeholder="Add a Comment", type="text", ng-model='comment')
+                      .col-sm-2
+                        button.btn.btn-primary(type="button", ng-click="addComment()") Comment
+

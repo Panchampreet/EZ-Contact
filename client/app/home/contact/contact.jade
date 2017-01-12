@@ -1,0 +1,25 @@
+br
+.col-md-1
+.col-md-11
+  .panel.panel-default.panel-body
+    .row
+      .col-md-12.lead
+        h3(style="margin-bottom: 25px; text-align: left;") {{user.name}}
+        hr
+        .row
+          .col-md-4.text-center
+            img.img-circle.avatar.avatar-original(style="-webkit-user-select:none; display:block width:120px; height:120px; margin:auto;", src="{{user.imageurl}}")
+          .col-md-8
+            .row
+              .col-md-12
+                h5 Email: {{user.email}}
+                h5 Title: {{user.title}}
+                h5 Team: {{user.team}}
+                h5 Organization: {{user.organization}}
+        hr
+        .row
+          .col-sm-10
+            input.form-control(placeholder="Search for a Contact", type="text", ng-model='searchtext')
+          .col-sm-2
+            button.btn.btn-primary.pull-right(type="button", ng-click='search()') Search
+.col-md-1
